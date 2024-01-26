@@ -12,14 +12,14 @@ function displayPhotographer(photographer) {
   name.textContent = photographer.name;
   location.textContent = `${photographer.city}, ${photographer.country}`;
   tag.textContent = photographer.tagline;
-  img.src = `assets/photographers/${photographer.portrait}`;
+  img.src = `assets/photographers/${photographer.id}/${photographer.portrait}`;
 }
 
-function displayPhotos(name, photos) {
+function displayPhotos(id, photos) {
   const list = document.querySelector(".photograph-photos");
 
   photos.forEach((photo) => {
-    const listItem = getPhotoListItemTemplate(name, photo);
+    const listItem = getMediaListItemTemplate(id, photo);
     list.appendChild(listItem);
   });
 }
@@ -34,11 +34,11 @@ async function init() {
   );
 
   const photos = media.filter(
-    (element) => element.photographerId === +photographerId && element.image
+    (element) => element.photographerId === +photographerId
   );
 
   displayPhotographer(photograpther);
-  displayPhotos(photograpther.name, photos);
+  displayPhotos(photograpther.id, photos);
 }
 
 init();

@@ -1,7 +1,7 @@
 function photographerTemplate(data) {
   const { id, name, portrait, city, country, tagline, price } = data;
 
-  const picture = `assets/photographers/id/${portrait}`;
+  const picture = `assets/photographers/${id}/${portrait}`;
 
   function getUserCardDOM() {
     const article = document.createElement("article");
@@ -26,7 +26,7 @@ function photographerTemplate(data) {
     priceP.classList.add("photographer__price");
 
     const link = document.createElement("a");
-    link.setAttribute("href", `photographer?id=${id}`);
+    link.setAttribute("href", `photographer.html?id=${id}`);
     link.classList.add("photographer__link");
     link.appendChild(img);
     link.appendChild(h2);
