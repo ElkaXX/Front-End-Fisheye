@@ -16,7 +16,26 @@ function displayPhotographer(photographer) {
 }
 
 function displayPhotos(id, photos) {
+  const select = document.querySelector(".photograph-filters__dropdown");
+
+  displayPhotosByFilter(id, photos, select.value);
+
+  select.addEventListener("change", () => {
+    displayPhotosByFilter(id, photos, select.value);
+  });
+}
+
+function displayPhotosByFilter(id, photos, filterValue) {
   const list = document.querySelector(".photograph-photos");
+  list.innerHTML = "";
+
+  if (filterValue === "popular") {
+    photos.sort((a, b) => b.likes - a.likes);
+  } else if (filterValue === "date") {
+    photos.sort((a, b) => new Date(a.date) - new Date(b.date));
+  } else if (filterValue === "title") {
+    photos.sort((a, b) => a.title.localeCompare(b.title));
+  }
 
   photos.forEach((photo) => {
     const listItem = getMediaListItemTemplate(id, photo);
