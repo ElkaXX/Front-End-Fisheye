@@ -16,6 +16,9 @@ function getMediaListItemTemplate(id, media) {
   }
 
   mediaElement.classList.add("photograph-photos__media");
+  const mediaWrapper = document.createElement("div");
+  mediaWrapper.classList.add("photograph-photos__media-wrapper");
+  mediaWrapper.appendChild(mediaElement);
 
   const title = document.createElement("div");
   title.classList.add("photograph-photos__title");
@@ -38,7 +41,7 @@ function getMediaListItemTemplate(id, media) {
 
   const li = document.createElement("li");
   li.classList.add("photograph-photos__item");
-  li.appendChild(mediaElement);
+  li.appendChild(mediaWrapper);
   li.appendChild(wrapper);
 
   return li;

@@ -58,6 +58,7 @@ async function init() {
 
   displayPhotographer(photograpther);
   displayPhotos(photograpther.id, photos);
+  initGallery();
 }
 
 init();

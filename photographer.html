@@ -8,6 +8,13 @@
       href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <title>Fisheye - photographe</title>
   </head>
   <body>
@@ -47,7 +54,38 @@
       </div>
 
       <ul class="photograph-photos"></ul>
+
+      <div class="photograpth-gallery">
+        <div class="photograpth-gallery__content">
+          <button
+            class="photograpth-gallery__button photograpth-gallery__button_previous"
+          >
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+
+          <div class="photograpth-gallery__wrapper">
+            <img
+              class="photograpth-gallery__media"
+              src="assets/photographers/195/Architecture_Contrast.jpg"
+              alt=""
+            />
+
+            <div class="photograpth-gallery__title">Hello</div>
+          </div>
+
+          <button
+            class="photograpth-gallery__button photograpth-gallery__button_next"
+          >
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+
+          <button class="photograpth-gallery__close">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
     </main>
+
     <div id="contact_modal">
       <div class="modal">
         <header>
@@ -63,6 +101,7 @@
         </form>
       </div>
     </div>
+    <script src="scripts/utils/gallery.js"></script>
     <script src="/scripts/templates/media.js"></script>
     <script src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
