@@ -1,4 +1,5 @@
-function initGallery() {
+const initGallery = () => {
+/*function initGallery() {*/
   const mediaList = document.querySelectorAll(
     ".photograph-photos__media-wrapper"
   );
@@ -52,12 +53,14 @@ function initGallery() {
   });
 }
 
-function applyMediaToGallery(mediaElement) {
+const applyMediaToGallery = (mediaElement) => {
+/*function applyMediaToGallery(mediaElement) {*/
   applyMediaTitle(mediaElement);
   applyMediaContent(mediaElement);
 }
 
-function applyMediaTitle(mediaElement) {
+const applyMediaTitle = (mediaElement) => {
+/*function applyMediaTitle(mediaElement) {*/
   const galleryTitle = document.querySelector(".photograpth-gallery__title");
   const title = mediaElement.parentElement.querySelector(
     ".photograph-photos__wrapper .photograph-photos__title"
@@ -66,7 +69,8 @@ function applyMediaTitle(mediaElement) {
   galleryTitle.textContent = title;
 }
 
-function applyMediaContent(mediaElement) {
+const applyMediaContent = (mediaElement) => {
+/*function applyMediaContent(mediaElement) {*/
   const wrapper = document.querySelector(".photograpth-gallery__wrapper");
   const media = mediaElement.querySelector(".photograph-photos__media");
 

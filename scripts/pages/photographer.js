@@ -1,9 +1,11 @@
-async function getPhotographers() {
+const getPhotographers = async () => {
+/*async function getPhotographers() {*/
   const response = await fetch("data/photographers.json");
   return await response.json();
 }
 
-function displayPhotographer(photographer) {
+const displayPhotographer = (photographer) => {
+/*function displayPhotographer(photographer) {*/
   const name = document.querySelector(".photograph-header__name");
   const location = document.querySelector(".photograph-header__location");
   const tag = document.querySelector(".photograph-header__tag");
@@ -15,7 +17,8 @@ function displayPhotographer(photographer) {
   img.src = `assets/photographers/${photographer.id}/${photographer.portrait}`;
 }
 
-function displayPhotos(id, photos) {
+const displayPhotos = (id, photos) => {
+/*function displayPhotos(id, photos) {*/
   const select = document.querySelector(".photograph-filters__dropdown");
 
   displayPhotosByFilter(id, photos, select.value);
@@ -25,7 +28,8 @@ function displayPhotos(id, photos) {
   });
 }
 
-function displayPhotosByFilter(id, photos, filterValue) {
+const displayPhotosByFilter = (id, photos, filterValue) => {
+/*function displayPhotosByFilter(id, photos, filterValue) {*/
   const list = document.querySelector(".photograph-photos");
   list.innerHTML = "";
 
@@ -45,7 +49,8 @@ function displayPhotosByFilter(id, photos, filterValue) {
   initGallery();
 }
 
-async function init() {
+const init = async () => {
+/*async function init() {*/
   const { photographers, media } = await getPhotographers();
 
   const photographerId = new URL(location.href).searchParams.get("id");

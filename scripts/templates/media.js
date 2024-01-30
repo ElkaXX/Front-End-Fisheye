@@ -1,5 +1,7 @@
-function getMediaListItemTemplate(id, media) {
+const getMediaListItemTemplate = (id, media) => {
   let mediaElement;
+/*function getMediaListItemTemplate(id, media) {
+  let mediaElement;*/
 
   if (media.image) {
     mediaElement = document.createElement("img");
