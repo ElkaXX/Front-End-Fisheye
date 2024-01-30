@@ -19,19 +19,23 @@ function initGallery() {
   );
 
   galleryPrevious.addEventListener("click", () => {
-    if (selectedMedia.index === 0) {
-      return;
-    }
-    const mediaElement = mediaList[selectedMedia.index - 1];
+    const index =
+      selectedMedia.index === 0
+        ? mediaList.length - 1
+        : selectedMedia.index - 1;
+
+    const mediaElement = mediaList[index];
     applyMediaToGallery(mediaElement);
     selectedMedia = mediaElement;
   });
 
   galleryNext.addEventListener("click", () => {
-    if (mediaList.length - 1 === selectedMedia.index) {
-      return;
-    }
-    const mediaElement = mediaList[selectedMedia.index + 1];
+    const index =
+      mediaList.length - 1 === selectedMedia.index
+        ? 0
+        : selectedMedia.index + 1;
+
+    const mediaElement = mediaList[index];
     applyMediaToGallery(mediaElement);
     selectedMedia = mediaElement;
   });
@@ -49,13 +53,44 @@ function initGallery() {
 }
 
 function applyMediaToGallery(mediaElement) {
-  const galleryMedia = document.querySelector(".photograpth-gallery__media");
+  applyMediaTitle(mediaElement);
+  applyMediaContent(mediaElement);
+}
+
+function applyMediaTitle(mediaElement) {
   const galleryTitle = document.querySelector(".photograpth-gallery__title");
   const title = mediaElement.parentElement.querySelector(
     ".photograph-photos__wrapper .photograph-photos__title"
   ).textContent;
-  const mediaSrc = mediaElement.querySelector(".photograph-photos__media").src;
 
-  galleryMedia.src = mediaSrc;
   galleryTitle.textContent = title;
+}
+
+function applyMediaContent(mediaElement) {
+  const wrapper = document.querySelector(".photograpth-gallery__wrapper");
+  const media = mediaElement.querySelector(".photograph-photos__media");
+
+  wrapper.querySelector(".photograpth-gallery__media")?.remove();
+
+  let galleryMedia;
+
+  if (media.src) {
+    galleryMedia = document.createElement("img");
+    galleryMedia.src = media.src;
+  } else {
+    const source = media.querySelector("source");
+    galleryMedia = document.createElement("video");
+    galleryMedia.controls = true;
+
+    const sourceElement = document.createElement("source");
+    sourceElement.src = source.src;
+    sourceElement.type = "video/mp4";
+
+    galleryMedia.appendChild(sourceElement);
+  }
+
+  galleryMedia.classList.add("photograpth-gallery__media");
+  wrapper.insertBefore(galleryMedia, wrapper.firstChild);
+
+  console.log(media);
 }

@@ -41,6 +41,8 @@ function displayPhotosByFilter(id, photos, filterValue) {
     const listItem = getMediaListItemTemplate(id, photo);
     list.appendChild(listItem);
   });
+  
+  initGallery();
 }
 
 async function init() {
@@ -58,7 +60,6 @@ async function init() {
 
   displayPhotographer(photograpther);
   displayPhotos(photograpther.id, photos);
-  initGallery();
 }
 
 init();
