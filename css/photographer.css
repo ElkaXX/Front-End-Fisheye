@@ -232,3 +232,31 @@ form input {
   border: none;
   border-radius: 5px;
 }
+
+
+.photograph-filters__dropdown {
+  background-color: #901c1c; 
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+/*.photograph-filters__dropdown::after {
+  content: '\25BC'; 
+  background-color: #db8876;
+}
+
+.photograph-filters__dropdown.open::after {
+  content: '\25B2'; 
+}
+
+.photograph-filters__option {
+  text-decoration: underline;
+}*/
+
+
+
+
+
