@@ -1,72 +1,62 @@
-const getPhotographers = async () => {
-/*async function getPhotographers() {*/
-  const response = await fetch("data/photographers.json");
-  return await response.json();
-}
-
 const displayPhotographer = (photographer) => {
-/*function displayPhotographer(photographer) {*/
   const name = document.querySelector(".photograph-header__name");
   const location = document.querySelector(".photograph-header__location");
   const tag = document.querySelector(".photograph-header__tag");
   const img = document.querySelector(".photograph-header__img");
 
+  const mediaFactory = new MediaFactory();
+  const portrait = mediaFactory.getPhotograptherPortrait(
+    photographer.id,
+    photographer.portrait
+  );
+
   name.textContent = photographer.name;
   location.textContent = `${photographer.city}, ${photographer.country}`;
   tag.textContent = photographer.tagline;
-  img.src = `assets/photographers/${photographer.id}/${photographer.portrait}`;
-}
+  img.src = portrait.src;
+};
 
-const displayPhotos = (id, photos) => {
-/*function displayPhotos(id, photos) {*/
-  const select = document.querySelector(".photograph-filters__dropdown");
+const displayMediaList = (mediaList) => {
+  const filterValue = document.querySelector(
+    ".photograph-filters__dropdown"
+  ).value;
 
-  displayPhotosByFilter(id, photos, select.value);
+  displayMediaByFilter(mediaList, filterValue);
 
-  select.addEventListener("change", () => {
-    displayPhotosByFilter(id, photos, select.value);
+  filterValue.addEventListener("change", () => {
+    displayMediaByFilter(mediaList, filterValue);
   });
-}
+};
 
-const displayPhotosByFilter = (id, photos, filterValue) => {
-/*function displayPhotosByFilter(id, photos, filterValue) {*/
+const displayMediaByFilter = (mediaList, filterValue) => {
   const list = document.querySelector(".photograph-photos");
   list.innerHTML = "";
 
   if (filterValue === "popular") {
-    photos.sort((a, b) => b.likes - a.likes);
+    mediaList.sort((a, b) => b.likes - a.likes);
   } else if (filterValue === "date") {
-    photos.sort((a, b) => new Date(a.date) - new Date(b.date));
+    mediaList.sort((a, b) => a.date - b.date);
   } else if (filterValue === "title") {
-    photos.sort((a, b) => a.title.localeCompare(b.title));
+    mediaList.sort((a, b) => a.title.localeCompare(b.title));
   }
 
-  photos.forEach((photo) => {
-    const listItem = getMediaListItemTemplate(id, photo);
+  mediaList.forEach((media) => {
+    const listItem = media.getMediaListItemDOM();
     list.appendChild(listItem);
   });
-  
+
   initGallery();
-}
+};
 
 const init = async () => {
-/*async function init() {*/
-  const { photographers, media } = await getPhotographers();
-
   const photographerId = new URL(location.href).searchParams.get("id");
 
-  const photograpther = photographers.find(
-    (element) => element.id === +photographerId
-  );
+  const api = new Api();
+  const photographer = await api.getPhotographerByIdAsync(photographerId);
+  const mediaList = await api.getPhotographerMediaListAsync(photographerId);
 
-  const photos = media.filter(
-    (element) => element.photographerId === +photographerId
-  );
-
-  displayPhotographer(photograpther);
-  displayPhotos(photograpther.id, photos);
-}
+  displayPhotographer(photographer);
+  displayMediaList(mediaList);
+};
 
 init();
-
-
