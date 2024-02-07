@@ -9,7 +9,7 @@ class Media {
     }
   }
 
-  getHtmlDOM() {}
+  getHtmlDOM(classes) {}
 
   getMediaListItemDOM() {
     const mediaElement = this.getHtmlDOM();
@@ -28,6 +28,7 @@ class Media {
     likeCount.classList.add("photograph-photos__like-count");
     const likeImg = document.createElement("img");
     likeImg.setAttribute("src", "assets/images/favorite.png");
+    likeImg.classList.add("photograph-photos__like-media");
     const likes = document.createElement("div");
     likes.classList.add("photograph-photos__likes");
     likes.appendChild(likeCount);

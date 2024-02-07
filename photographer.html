@@ -31,7 +31,7 @@
           <div class="photograph-header__tag"></div>
         </div>
         <button
-          class="photograph-header__btn contact_button"
+          class="photograph-header__btn general-button"
           onclick="displayModal()"
         >
           Contactez-moi
@@ -40,51 +40,74 @@
       </div>
 
       <div class="photograph-filters">
-        <label for="photograph-filters__dropdown" class="photograph-filters__title">Trier par</label>
-        <select id="photograph-filters__dropdown" class="photograph-filters__dropdown">
-          <option selected value="popular" class="photograph-filters__option">Popularité</option>
+        <label
+          for="photograph-filters__dropdown"
+          class="photograph-filters__title"
+          >Trier par</label
+        >
+        <select
+          id="photograph-filters__dropdown"
+          class="photograph-filters__dropdown"
+        >
+          <option selected value="popular" class="photograph-filters__option">
+            Popularité
+          </option>
           <option value="date" class="photograph-filters__option">Date</option>
-          <option value="title" class="photograph-filters__option">Titre</option>
+          <option value="title" class="photograph-filters__option">
+            Titre
+          </option>
         </select>
       </div>
-      
+
       <ul class="photograph-photos"></ul>
-
-      <div class="photograpth-gallery">
-        <div class="photograpth-gallery__content">
-
-          <button class="photograpth-gallery__button photograpth-gallery__button_previous">
-            <em class="fa-solid fa-chevron-left"></em>
-          </button>
-
-          <div class="photograpth-gallery__wrapper">
-            <div class="photograpth-gallery__title">Hello</div>
-          </div>
-          
-          <button class="photograpth-gallery__button photograpth-gallery__button_next">
-            <em class="fa-solid fa-chevron-right"></em>
-          </button>
-          
-          <button class="photograpth-gallery__close">
-            <strong class="fa-solid fa-xmark"></strong>
-          </button>
-          
-        </div>
-      </div>
     </main>
 
-    <div id="contact_modal">
-      <div class="modal">
+    <div class="photograpth-gallery">
+      <div class="photograpth-gallery__content">
+        <button
+          class="photograpth-gallery__button photograpth-gallery__button_previous"
+        >
+          <em class="fa-solid fa-chevron-left"></em>
+        </button>
+
+        <div class="photograpth-gallery__wrapper">
+          <div class="photograpth-gallery__title">Hello</div>
+        </div>
+
+        <button
+          class="photograpth-gallery__button photograpth-gallery__button_next"
+        >
+          <em class="fa-solid fa-chevron-right"></em>
+        </button>
+
+        <button class="photograpth-gallery__close">
+          <strong class="fa-solid fa-xmark"></strong>
+        </button>
+      </div>
+    </div>
+
+    <div class="contact-modal">
+      <div class="contact-modal__content">
         <header>
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" alt="Close modal" onclick="closeModal()" />
-
+          <img
+            src="assets/icons/close.svg"
+            alt="Close modal"
+            onclick="closeModal()"
+          />
         </header>
-        <form>
+        <form class="contact-modal__form">
           <div>
-            <label>Prénom <input /></label>
+            <label for="name">Prénom</label>
+            <input id="name" name="name" />
+            <label for="surname">Nom</label>
+            <input id="surname" name="surname" />
+            <label for="email">Email</label>
+            <input id="email" name="email" />
+            <label for="message">Votre message</label>
+            <textarea id="message" name="message"></textarea>
           </div>
-          <button class="contact_button">Envoyer</button>
+          <button class="contact-modal__btn general-button">Envoyer</button>
         </form>
       </div>
     </div>
@@ -96,7 +119,7 @@
     <script src="scripts/models/Photographer.js"></script>
     <script src="scripts/utils/gallery.js"></script>
     <script src="scripts/api/api.js"></script>
-    <script src="scripts/pages/photographer.js"></script>
     <script src="scripts/utils/contactForm.js"></script>
+    <script src="scripts/pages/photographer.js"></script>
   </body>
 </html>
