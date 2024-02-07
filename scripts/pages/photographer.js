@@ -17,20 +17,21 @@ const displayPhotographer = (photographer) => {
 };
 
 const displayMediaList = (mediaList) => {
-  const filterValue = document.querySelector(
-    ".photograph-filters__dropdown"
-  ).value;
+  const dropdown = document.querySelector(".photograph-filters__dropdown");
+  const filterValue = dropdown.value;
 
   displayMediaByFilter(mediaList, filterValue);
 
-  filterValue.addEventListener("change", () => {
-    displayMediaByFilter(mediaList, filterValue);
+  dropdown.addEventListener("change", () => {
+    const newFilterValue = dropdown.value;
+    displayMediaByFilter(mediaList, newFilterValue);
   });
 };
 
 const displayMediaByFilter = (mediaList, filterValue) => {
   const list = document.querySelector(".photograph-photos");
   list.innerHTML = "";
+
 
   if (filterValue === "popular") {
     mediaList.sort((a, b) => b.likes - a.likes);
