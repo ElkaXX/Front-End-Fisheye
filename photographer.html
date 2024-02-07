@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8" />
@@ -40,42 +40,35 @@
       </div>
 
       <div class="photograph-filters">
-        <div class="photograph-filters__title">Trier par</div>
-
-        <select class="photograph-filters__dropdown">
-          <option selected value="popular" class="photograph-filters__option">
-            Popularité
-          </option>
+        <label for="photograph-filters__dropdown" class="photograph-filters__title">Trier par</label>
+        <select id="photograph-filters__dropdown" class="photograph-filters__dropdown">
+          <option selected value="popular" class="photograph-filters__option">Popularité</option>
           <option value="date" class="photograph-filters__option">Date</option>
-          <option value="title" class="photograph-filters__option">
-            Titre
-          </option>
+          <option value="title" class="photograph-filters__option">Titre</option>
         </select>
       </div>
-
+      
       <ul class="photograph-photos"></ul>
 
       <div class="photograpth-gallery">
         <div class="photograpth-gallery__content">
-          <button
-            class="photograpth-gallery__button photograpth-gallery__button_previous"
-          >
-            <i class="fa-solid fa-chevron-left"></i>
+
+          <button class="photograpth-gallery__button photograpth-gallery__button_previous">
+            <em class="fa-solid fa-chevron-left"></em>
           </button>
 
           <div class="photograpth-gallery__wrapper">
             <div class="photograpth-gallery__title">Hello</div>
           </div>
-
-          <button
-            class="photograpth-gallery__button photograpth-gallery__button_next"
-          >
-            <i class="fa-solid fa-chevron-right"></i>
+          
+          <button class="photograpth-gallery__button photograpth-gallery__button_next">
+            <em class="fa-solid fa-chevron-right"></em>
           </button>
-
+          
           <button class="photograpth-gallery__close">
-            <i class="fa-solid fa-xmark"></i>
+            <strong class="fa-solid fa-xmark"></strong>
           </button>
+          
         </div>
       </div>
     </main>
@@ -84,12 +77,12 @@
       <div class="modal">
         <header>
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <img src="assets/icons/close.svg" alt="Close modal" onclick="closeModal()" />
+
         </header>
         <form>
           <div>
-            <label>Prénom</label>
-            <input />
+            <label>Prénom <input /></label>
           </div>
           <button class="contact_button">Envoyer</button>
         </form>
