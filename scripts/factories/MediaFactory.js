@@ -1,7 +1,7 @@
 class MediaFactory {
-  getPhotograptherPortrait(photographerId, portraitName) {
+  getPhotograptherPortrait(photographerId, name, portraitName) {
     const src = `assets/photographers/${photographerId}/${portraitName}`;
-    return new Image(src, portraitName);
+    return new Image(src, name);
   }
 
   getPhotograptherMedia(photographerId, media) {

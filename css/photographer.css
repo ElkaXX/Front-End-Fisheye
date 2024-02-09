@@ -192,6 +192,12 @@
   padding: 20px;
 }
 
+.contact-modal__close {
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
 .contact-modal__content {
   border-radius: 5px;
   background-color: #db8876;

@@ -15,10 +15,11 @@ class Photographer {
     const article = document.createElement("article");
 
     const img = mediaFactory
-      .getPhotograptherPortrait(this.id, this.portrait)
+      .getPhotograptherPortrait(this.id, this.name, this.portrait)
       .getHtmlDOM();
 
     const h2 = document.createElement("h2");
+    h2.setAttribute("aria-hidden", true);
     h2.textContent = this.name;
 
     const locationP = document.createElement("p");

@@ -21,6 +21,7 @@ class Media {
 
     const title = document.createElement("div");
     title.classList.add("photograph-photos__title");
+    title.setAttribute("aria-hidden", true);
     title.textContent = this.title;
 
     const likeCount = document.createElement("div");
@@ -40,6 +41,7 @@ class Media {
     wrapper.appendChild(likes);
 
     const li = document.createElement("li");
+    li.tabIndex = 0;
     li.classList.add("photograph-photos__item");
     li.appendChild(mediaWrapper);
     li.appendChild(wrapper);

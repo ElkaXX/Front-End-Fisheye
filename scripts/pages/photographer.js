@@ -7,15 +7,17 @@ const displayPhotographer = (photographer) => {
   const img = document.querySelector(".photograph-header__img");
 
   const mediaFactory = new MediaFactory();
-  const portrait = mediaFactory.getPhotograptherPortrait(
+  const portraitImg = mediaFactory.getPhotograptherPortrait(
     photographer.id,
+    photographer.name,
     photographer.portrait
   );
 
   name.textContent = photographer.name;
   location.textContent = `${photographer.city}, ${photographer.country}`;
   tag.textContent = photographer.tagline;
-  img.src = portrait.src;
+  img.src = portraitImg.src;
+  img.alt = portraitImg.alt;
 };
 
 const displayMediaList = (mediaList) => {
@@ -44,7 +46,7 @@ const displayMediaByFilter = (mediaList, filterValue) => {
     const listItem = media.getMediaListItemDOM();
     const likeBtn = listItem.querySelector(".photograph-photos__like-media");
     const count = listItem.querySelector(".photograph-photos__like-count");
-    
+
     likeBtn.addEventListener("click", () => {
       if (likedMediaIds.has(media.id)) {
         likedMediaIds.delete(media.id);
@@ -63,6 +65,12 @@ const displayMediaByFilter = (mediaList, filterValue) => {
   initGallery();
 };
 
+const initKeyboard = () => {
+  document.addEventListener("keydown", (event) => {
+    galleryHandleKeyboardEvent(event);
+  });
+};
+
 const init = async () => {
   document
     .querySelector(".contact-modal__form")
@@ -79,3 +87,4 @@ const init = async () => {
 };
 
 init();
+initKeyboard();

@@ -26,9 +26,9 @@
     <main id="main">
       <div class="photograph-header">
         <div class="photograph-header__profile">
-          <h1 class="photograph-header__name"></h1>
-          <div class="photograph-header__location"></div>
-          <div class="photograph-header__tag"></div>
+          <h1 class="photograph-header__name" tabindex="0"></h1>
+          <div class="photograph-header__location" tabindex="0"></div>
+          <div class="photograph-header__tag" tabindex="0"></div>
         </div>
         <button
           class="photograph-header__btn general-button"
@@ -41,12 +41,15 @@
 
       <div class="photograph-filters">
         <label
+          id="gallery-sort"
           for="photograph-filters__dropdown"
           class="photograph-filters__title"
           >Trier par</label
         >
+
         <select
           id="photograph-filters__dropdown"
+          aria-labelledby="gallery-sort"
           class="photograph-filters__dropdown"
         >
           <option selected value="popular" class="photograph-filters__option">
@@ -89,12 +92,10 @@
     <div class="contact-modal">
       <div class="contact-modal__content">
         <header>
-          <h2>Contactez-moi</h2>
-          <img
-            src="assets/icons/close.svg"
-            alt="Close modal"
-            onclick="closeModal()"
-          />
+          <h2 tabindex="0" aria-label="Contactez-moi form header">Contactez-moi</h2>
+          <button class="contact-modal__close" onclick="closeModal()">
+            <img src="assets/icons/close.svg" alt="Close modal" />
+          </button>
         </header>
         <form class="contact-modal__form">
           <div>
@@ -107,7 +108,9 @@
             <label for="message">Votre message</label>
             <textarea id="message" name="message"></textarea>
           </div>
-          <button class="contact-modal__btn general-button">Envoyer</button>
+          <button type="submit" class="contact-modal__btn general-button">
+            Envoyer
+          </button>
         </form>
       </div>
     </div>
