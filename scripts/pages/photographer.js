@@ -44,8 +44,15 @@ const displayMediaByFilter = (mediaList, filterValue) => {
 
   mediaList.forEach((media) => {
     const listItem = media.getMediaListItemDOM();
-    const likeBtn = listItem.querySelector(".photograph-photos__like-media");
+    const likeBtn = listItem.querySelector(".photograph-photos__like-btn");
+    const likeImg = listItem.querySelector(".photograph-photos__like-media");
     const count = listItem.querySelector(".photograph-photos__like-count");
+
+    if (likedMediaIds.has(media.id)) {
+      likeImg.classList.add("photograph-photos__like-media_liked");
+    } else {
+      likeImg.classList.remove("photograph-photos__like-media_liked");
+    }
 
     likeBtn.addEventListener("click", () => {
       if (likedMediaIds.has(media.id)) {
@@ -56,6 +63,7 @@ const displayMediaByFilter = (mediaList, filterValue) => {
         media.likes += 1;
       }
 
+      likeImg.classList.toggle("photograph-photos__like-media_liked");
       count.textContent = media.likes;
     });
 

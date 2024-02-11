@@ -15,7 +15,7 @@ class Media {
     const mediaElement = this.getHtmlDOM();
 
     mediaElement.classList.add("photograph-photos__media");
-    const mediaWrapper = document.createElement("div");
+    const mediaWrapper = document.createElement("button");
     mediaWrapper.classList.add("photograph-photos__media-wrapper");
     mediaWrapper.appendChild(mediaElement);
 
@@ -30,10 +30,13 @@ class Media {
     const likeImg = document.createElement("img");
     likeImg.setAttribute("src", "assets/images/favorite.png");
     likeImg.classList.add("photograph-photos__like-media");
+    const likeBtn = document.createElement("button");
+    likeBtn.classList.add("photograph-photos__like-btn");
+    likeBtn.appendChild(likeImg);
     const likes = document.createElement("div");
     likes.classList.add("photograph-photos__likes");
     likes.appendChild(likeCount);
-    likes.appendChild(likeImg);
+    likes.appendChild(likeBtn);
 
     const wrapper = document.createElement("div");
     wrapper.classList.add("photograph-photos__wrapper");
@@ -41,7 +44,6 @@ class Media {
     wrapper.appendChild(likes);
 
     const li = document.createElement("li");
-    li.tabIndex = 0;
     li.classList.add("photograph-photos__item");
     li.appendChild(mediaWrapper);
     li.appendChild(wrapper);

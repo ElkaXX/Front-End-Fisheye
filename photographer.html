@@ -74,7 +74,7 @@
         </button>
 
         <div class="photograpth-gallery__wrapper">
-          <div class="photograpth-gallery__title">Hello</div>
+          <div tabindex="0" class="photograpth-gallery__title">Hello</div>
         </div>
 
         <button
@@ -92,7 +92,12 @@
     <div class="contact-modal">
       <div class="contact-modal__content">
         <header>
-          <h2 tabindex="0" aria-label="Contactez-moi form header">Contactez-moi</h2>
+          <div class="contact-modal__wrapper">
+            <h2 tabindex="0" aria-label="Contactez-moi form header">
+              Contactez-moi
+            </h2>
+            <div class="contact-modal__name"></div>
+          </div>
           <button class="contact-modal__close" onclick="closeModal()">
             <img src="assets/icons/close.svg" alt="Close modal" />
           </button>

@@ -1,6 +1,12 @@
 const displayModal = () => {
+  const photographName = document.querySelector(
+    ".photograph-header__name"
+  ).textContent;
+  
   const modal = document.querySelector(".contact-modal");
   const header = modal.querySelector("h2");
+  const name = modal.querySelector(".contact-modal__name");
+  name.textContent = photographName;
   modal.style.display = "block";
   header.focus();
 };

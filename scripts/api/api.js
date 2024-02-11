@@ -26,6 +26,8 @@ class Api {
   // Private function to read data from json file.
   async #readData() {
     const response = await fetch("data/photographers.json");
-    return await response.json();
+    const data = await response.json();
+    console.log(data);
+    return data;
   }
 }

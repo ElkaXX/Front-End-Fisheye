@@ -35,6 +35,13 @@ const initGallery = () => {
       e.preventDefault();
       openGalleryWithSelectedElement(mediaElement);
     });
+
+    mediaElement.addEventListener("keypress", (e) => {
+      if (e.code === "Enter") {
+        e.preventDefault();
+        openGalleryWithSelectedElement(mediaElement);
+      }
+    });
   });
 };
 
@@ -68,6 +75,7 @@ const applyMediaTitle = (mediaElement) => {
   ).textContent;
 
   galleryTitle.textContent = title;
+  galleryTitle.focus();
 };
 
 const applyMediaContent = (mediaElement) => {
@@ -104,6 +112,11 @@ const galleryHandleKeyboardEvent = (event) => {
     return;
   }
 
+  galleryHandleArrows(gallery, event);
+  galleryHandleClose(gallery, event);
+};
+
+const galleryHandleArrows = (gallery, event) => {
   const mediaList = document.querySelectorAll(
     ".photograph-photos__media-wrapper"
   );
@@ -112,5 +125,12 @@ const galleryHandleKeyboardEvent = (event) => {
     handleNext(mediaList, selectedMedia);
   } else if (event.code === "ArrowLeft") {
     handlePrevious(mediaList, selectedMedia);
+  }
+};
+
+const galleryHandleClose = (gallery, event) => {
+  if (event.code === "Escape") {
+    gallery.style.display = "none";
+    selectedMedia.focus();
   }
 };
