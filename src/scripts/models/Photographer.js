@@ -12,6 +12,7 @@ export default class Photographer {
   }
 
   getUserCardDOM() {
+    // Méthode de classe qui renvoie un élément DOM représentant la carte du photographe
     const article = document.createElement("article");
 
     const img = MediaFactory.getPhotograptherPortrait(

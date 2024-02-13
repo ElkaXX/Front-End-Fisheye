@@ -323,6 +323,7 @@ var Photographer = exports["default"] = /*#__PURE__*/function () {
   _createClass(Photographer, [{
     key: "getUserCardDOM",
     value: function getUserCardDOM() {
+      // Méthode de classe qui renvoie un élément DOM représentant la carte du photographe
       var article = document.createElement("article");
       var img = _MediaFactory["default"].getPhotograptherPortrait(this.id, this.name, this.portrait).getHtmlDOM();
       var h2 = document.createElement("h2");
