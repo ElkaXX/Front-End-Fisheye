@@ -25,7 +25,8 @@ var Api = exports["default"] = /*#__PURE__*/function () {
   }
   _createClass(Api, null, [{
     key: "getPhotographersAsync",
-    value: function () {
+    value: // Récupère et renvoie une liste de photographes
+    function () {
       var _getPhotographersAsync = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
         var data;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
@@ -48,7 +49,7 @@ var Api = exports["default"] = /*#__PURE__*/function () {
         return _getPhotographersAsync.apply(this, arguments);
       }
       return getPhotographersAsync;
-    }()
+    }() // Récupère et renvoie un photographe par son id
   }, {
     key: "getPhotographerByIdAsync",
     value: function () {
@@ -75,7 +76,7 @@ var Api = exports["default"] = /*#__PURE__*/function () {
         return _getPhotographerByIdAsync.apply(this, arguments);
       }
       return getPhotographerByIdAsync;
-    }()
+    }() // Récupère et renvoie la liste des médias d'un photographe par son id
   }, {
     key: "getPhotographerMediaListAsync",
     value: function () {
@@ -159,10 +160,14 @@ var MediaFactory = exports["default"] = /*#__PURE__*/function () {
   }
   _createClass(MediaFactory, null, [{
     key: "getPhotograptherPortrait",
-    value: function getPhotograptherPortrait(photographerId, name, portraitName) {
+    value:
+    // Méthode Factory pour créer l'image portrait d'un photographe
+    function getPhotograptherPortrait(photographerId, name, portraitName) {
       var src = "assets/photographers/".concat(photographerId, "/").concat(portraitName);
       return new _Image["default"](src, name);
     }
+
+    // Méthode Factory pour créer le média d'un photographe (image ou vidéo)
   }, {
     key: "getPhotograptherMedia",
     value: function getPhotograptherMedia(photographerId, media) {
@@ -242,6 +247,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : String(i); }
 function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 var Media = exports["default"] = /*#__PURE__*/function () {
+  // Crée une instance de Media.
   function Media(data) {
     _classCallCheck(this, Media);
     if (data) {
@@ -252,6 +258,12 @@ var Media = exports["default"] = /*#__PURE__*/function () {
       this.price = data.price;
     }
   }
+
+  /**
+   * Génère et renvoie un élément DOM représentant l'élément média item.
+   * @returns {HTMLLIElement} L'élément DOM représentant l'élément media item.
+   * @throws {Error} Génère une erreur si les données de l'élément media item ne sont pas disponible
+   */
   _createClass(Media, [{
     key: "getMediaListItemDOM",
     value: function getMediaListItemDOM() {
@@ -260,7 +272,8 @@ var Media = exports["default"] = /*#__PURE__*/function () {
       }
       var mediaElement = this.getHtmlDOM();
       mediaElement.classList.add("photograph-photos__media");
-      var mediaWrapper = document.createElement("button");
+      var mediaWrapper = document.createElement("div");
+      mediaWrapper.tabIndex = 0;
       mediaWrapper.classList.add("photograph-photos__media-wrapper");
       mediaWrapper.appendChild(mediaElement);
       var title = document.createElement("div");
@@ -272,6 +285,7 @@ var Media = exports["default"] = /*#__PURE__*/function () {
       likeCount.classList.add("photograph-photos__like-count");
       var likeImg = document.createElement("img");
       likeImg.setAttribute("src", "assets/images/favorite.png");
+      likeImg.setAttribute("alt", "heart");
       likeImg.classList.add("photograph-photos__like-media");
       var likeBtn = document.createElement("button");
       likeBtn.classList.add("photograph-photos__like-btn");
@@ -312,6 +326,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
 var Photographer = exports["default"] = /*#__PURE__*/function () {
   function Photographer(data) {
     _classCallCheck(this, Photographer);
+    // Initialise l'objet Photographer avec les propriétés des données
     this.id = data.id;
     this.name = data.name;
     this.portrait = data.portrait;

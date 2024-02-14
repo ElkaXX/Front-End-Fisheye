@@ -1,4 +1,5 @@
 export default class Media {
+  // Crée une instance de Media.
   constructor(data) {
     if (data) {
       this.id = data.id;
@@ -9,6 +10,12 @@ export default class Media {
     }
   }
 
+  /**
+   * Génère et renvoie un élément DOM représentant l'élément média item.
+   * @returns {HTMLLIElement} L'élément DOM représentant l'élément media item.
+   * @throws {Error} Génère une erreur si les données de l'élément media item ne sont pas disponible
+   */
+
   getMediaListItemDOM() {
     if (!this.id) {
       throw new Error("No data");
@@ -17,7 +24,8 @@ export default class Media {
     const mediaElement = this.getHtmlDOM();
 
     mediaElement.classList.add("photograph-photos__media");
-    const mediaWrapper = document.createElement("button");
+    const mediaWrapper = document.createElement("div");
+    mediaWrapper.tabIndex = 0;
     mediaWrapper.classList.add("photograph-photos__media-wrapper");
     mediaWrapper.appendChild(mediaElement);
 
@@ -31,6 +39,7 @@ export default class Media {
     likeCount.classList.add("photograph-photos__like-count");
     const likeImg = document.createElement("img");
     likeImg.setAttribute("src", "assets/images/favorite.png");
+    likeImg.setAttribute("alt", "heart");
     likeImg.classList.add("photograph-photos__like-media");
     const likeBtn = document.createElement("button");
     likeBtn.classList.add("photograph-photos__like-btn");

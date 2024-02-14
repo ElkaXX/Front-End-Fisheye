@@ -25,7 +25,8 @@ var Api = exports["default"] = /*#__PURE__*/function () {
   }
   _createClass(Api, null, [{
     key: "getPhotographersAsync",
-    value: function () {
+    value: // Récupère et renvoie une liste de photographes
+    function () {
       var _getPhotographersAsync = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
         var data;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
@@ -48,7 +49,7 @@ var Api = exports["default"] = /*#__PURE__*/function () {
         return _getPhotographersAsync.apply(this, arguments);
       }
       return getPhotographersAsync;
-    }()
+    }() // Récupère et renvoie un photographe par son id
   }, {
     key: "getPhotographerByIdAsync",
     value: function () {
@@ -75,7 +76,7 @@ var Api = exports["default"] = /*#__PURE__*/function () {
         return _getPhotographerByIdAsync.apply(this, arguments);
       }
       return getPhotographerByIdAsync;
-    }()
+    }() // Récupère et renvoie la liste des médias d'un photographe par son id
   }, {
     key: "getPhotographerMediaListAsync",
     value: function () {
@@ -159,10 +160,14 @@ var MediaFactory = exports["default"] = /*#__PURE__*/function () {
   }
   _createClass(MediaFactory, null, [{
     key: "getPhotograptherPortrait",
-    value: function getPhotograptherPortrait(photographerId, name, portraitName) {
+    value:
+    // Méthode Factory pour créer l'image portrait d'un photographe
+    function getPhotograptherPortrait(photographerId, name, portraitName) {
       var src = "assets/photographers/".concat(photographerId, "/").concat(portraitName);
       return new _Image["default"](src, name);
     }
+
+    // Méthode Factory pour créer le média d'un photographe (image ou vidéo)
   }, {
     key: "getPhotograptherMedia",
     value: function getPhotograptherMedia(photographerId, media) {
@@ -242,6 +247,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : String(i); }
 function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 var Media = exports["default"] = /*#__PURE__*/function () {
+  // Crée une instance de Media.
   function Media(data) {
     _classCallCheck(this, Media);
     if (data) {
@@ -252,6 +258,12 @@ var Media = exports["default"] = /*#__PURE__*/function () {
       this.price = data.price;
     }
   }
+
+  /**
+   * Génère et renvoie un élément DOM représentant l'élément média item.
+   * @returns {HTMLLIElement} L'élément DOM représentant l'élément media item.
+   * @throws {Error} Génère une erreur si les données de l'élément media item ne sont pas disponible
+   */
   _createClass(Media, [{
     key: "getMediaListItemDOM",
     value: function getMediaListItemDOM() {
@@ -260,7 +272,8 @@ var Media = exports["default"] = /*#__PURE__*/function () {
       }
       var mediaElement = this.getHtmlDOM();
       mediaElement.classList.add("photograph-photos__media");
-      var mediaWrapper = document.createElement("button");
+      var mediaWrapper = document.createElement("div");
+      mediaWrapper.tabIndex = 0;
       mediaWrapper.classList.add("photograph-photos__media-wrapper");
       mediaWrapper.appendChild(mediaElement);
       var title = document.createElement("div");
@@ -272,6 +285,7 @@ var Media = exports["default"] = /*#__PURE__*/function () {
       likeCount.classList.add("photograph-photos__like-count");
       var likeImg = document.createElement("img");
       likeImg.setAttribute("src", "assets/images/favorite.png");
+      likeImg.setAttribute("alt", "heart");
       likeImg.classList.add("photograph-photos__like-media");
       var likeBtn = document.createElement("button");
       likeBtn.classList.add("photograph-photos__like-btn");
@@ -312,6 +326,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
 var Photographer = exports["default"] = /*#__PURE__*/function () {
   function Photographer(data) {
     _classCallCheck(this, Photographer);
+    // Initialise l'objet Photographer avec les propriétés des données
     this.id = data.id;
     this.name = data.name;
     this.portrait = data.portrait;
@@ -429,6 +444,8 @@ var displayPhotographer = function displayPhotographer(photographer) {
   img.src = portraitImg.src;
   img.alt = portraitImg.alt;
 };
+
+// Fonction pour afficher une liste d'éléments multimédias en fonction du filtre sélectionné
 var displayMediaByFilter = function displayMediaByFilter(mediaList, filterValue) {
   var list = document.querySelector(".photograph-photos");
   list.innerHTML = "";
@@ -455,6 +472,8 @@ var displayMediaByFilter = function displayMediaByFilter(mediaList, filterValue)
     } else {
       likeImg.classList.remove("photograph-photos__like-media_liked");
     }
+
+    // Ajout d'un gestionnaire d'événement pour le bouton "Like"
     likeBtn.addEventListener("click", function () {
       if (likedMediaIds.has(media.id)) {
         likedMediaIds["delete"](media.id);
@@ -477,6 +496,8 @@ var displayMediaList = function displayMediaList(mediaList) {
     displayMediaByFilter(mediaList, dropdown.value);
   });
 };
+
+// Fonction d'initialisation du traitement des événements clavier
 var initKeyboard = function initKeyboard() {
   document.addEventListener("keydown", function (event) {
     (0, _gallery.galleryHandleKeyboardEvent)(event);
@@ -571,20 +592,25 @@ exports.initGallery = exports.galleryHandleKeyboardEvent = void 0;
 /* eslint-disable no-return-assign */
 /* eslint-disable no-param-reassign */
 var selectedMedia;
+// Fonction pour mettre à jour le titre de la galerie en fonction du média sélectionné
 var applyMediaTitle = function applyMediaTitle(mediaElement) {
   var galleryTitle = document.querySelector(".photograpth-gallery__title");
   var title = mediaElement.parentElement.querySelector(".photograph-photos__wrapper .photograph-photos__title").textContent;
   galleryTitle.textContent = title;
 };
+// Fonction pour mettre à jour le contenu de la galerie en fonction du média sélectionné
 var applyMediaContent = function applyMediaContent(mediaElement) {
   var _wrapper$querySelecto;
   var wrapper = document.querySelector(".photograpth-gallery__wrapper");
   var media = mediaElement.querySelector(".photograph-photos__media");
   (_wrapper$querySelecto = wrapper.querySelector(".photograpth-gallery__media")) === null || _wrapper$querySelecto === void 0 || _wrapper$querySelecto.remove();
+
+  // Créer un nouvel élément multimédia de galerie en fonction du type de média (image ou vidéo)
   var galleryMedia;
   if (media.src) {
     galleryMedia = document.createElement("img");
     galleryMedia.src = media.src;
+    galleryMedia.alt = media.alt;
   } else {
     var source = media.querySelector("source");
     galleryMedia = document.createElement("video");
@@ -597,11 +623,16 @@ var applyMediaContent = function applyMediaContent(mediaElement) {
   galleryMedia.classList.add("photograpth-gallery__media");
   wrapper.insertBefore(galleryMedia, wrapper.firstChild);
 };
+
+// Fonction pour mettre à jour la galerie avec le média sélectionné
 var applyMediaToGallery = function applyMediaToGallery(mediaElement) {
   applyMediaTitle(mediaElement);
   applyMediaContent(mediaElement);
 };
+
+// Fonction pour gérer la navigation vers l'élément multimédia précédent
 var handlePrevious = function handlePrevious(mediaList) {
+  // Détermine l'index de l'élément multimédia précédent
   var index = selectedMedia.index === 0 ? mediaList.length - 1 : selectedMedia.index - 1;
   var mediaElement = mediaList[index];
   applyMediaToGallery(mediaElement);
@@ -613,6 +644,8 @@ var handleNext = function handleNext(mediaList) {
   applyMediaToGallery(mediaElement);
   selectedMedia = mediaElement;
 };
+
+// Fonction pour gérer la navigation au clavier dans la galerie
 var galleryHandleArrows = function galleryHandleArrows(gallery, event) {
   var mediaList = document.querySelectorAll(".photograph-photos__media-wrapper");
   if (event.code === "ArrowRight") {
@@ -621,12 +654,16 @@ var galleryHandleArrows = function galleryHandleArrows(gallery, event) {
     handlePrevious(mediaList, selectedMedia);
   }
 };
+
+// Fonction pour gérer la fermeture de la galerie
 var galleryHandleClose = function galleryHandleClose(gallery, event) {
   if (event.code === "Escape") {
     gallery.style.display = "none";
     selectedMedia.focus();
   }
 };
+
+// Fonction pour initialiser la galerie
 var initGallery = exports.initGallery = function initGallery() {
   var mediaList = document.querySelectorAll(".photograph-photos__media-wrapper");
   var gallery = document.querySelector(".photograpth-gallery");
@@ -642,11 +679,15 @@ var initGallery = exports.initGallery = function initGallery() {
   galleryNext.addEventListener("click", function () {
     return handleNext(mediaList);
   });
+
+  // Fonction pour ouvrir la galerie avec l'élément média sélectionné
   var openGalleryWithSelectedElement = function openGalleryWithSelectedElement(mediaElement) {
     selectedMedia = mediaElement;
     gallery.style.display = "flex";
     applyMediaToGallery(mediaElement);
   };
+
+  // Écouteurs d'événements pour chaque élément multimédia
   mediaList.forEach(function (mediaElement, index) {
     mediaElement.index = index;
     mediaElement.addEventListener("click", function (e) {
@@ -661,8 +702,14 @@ var initGallery = exports.initGallery = function initGallery() {
     });
   });
 };
+
+/** Fonction pour gérer les événements du clavier pour
+     navigation et fermeture de la galerie
+    */
 var galleryHandleKeyboardEvent = exports.galleryHandleKeyboardEvent = function galleryHandleKeyboardEvent(event) {
   var gallery = document.querySelector(".photograpth-gallery");
+
+  // Si la galerie n'est pas affichée, return
   if (gallery.style.display !== "flex") {
     return;
   }

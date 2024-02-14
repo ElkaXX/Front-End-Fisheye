@@ -25,6 +25,7 @@ const displayPhotographer = (photographer) => {
   img.alt = portraitImg.alt;
 };
 
+// Fonction pour afficher une liste d'éléments multimédias en fonction du filtre sélectionné
 const displayMediaByFilter = (mediaList, filterValue) => {
   const list = document.querySelector(".photograph-photos");
   list.innerHTML = "";
@@ -49,6 +50,7 @@ const displayMediaByFilter = (mediaList, filterValue) => {
       likeImg.classList.remove("photograph-photos__like-media_liked");
     }
 
+    // Ajout d'un gestionnaire d'événement pour le bouton "Like"
     likeBtn.addEventListener("click", () => {
       if (likedMediaIds.has(media.id)) {
         likedMediaIds.delete(media.id);
@@ -78,6 +80,7 @@ const displayMediaList = (mediaList) => {
   });
 };
 
+// Fonction d'initialisation du traitement des événements clavier
 const initKeyboard = () => {
   document.addEventListener("keydown", (event) => {
     galleryHandleKeyboardEvent(event);

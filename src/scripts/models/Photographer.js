@@ -2,6 +2,7 @@ import MediaFactory from "../factories/MediaFactory";
 
 export default class Photographer {
   constructor(data) {
+    // Initialise l'objet Photographer avec les propriétés des données
     this.id = data.id;
     this.name = data.name;
     this.portrait = data.portrait;

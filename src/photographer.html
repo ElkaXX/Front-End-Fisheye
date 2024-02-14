@@ -19,7 +19,7 @@
   </head>
   <body>
     <header>
-      <a rel="stylesheet" href="/"
+      <a rel="stylesheet" href="/src"
         ><img src="assets/images/logo.png" class="logo" alt="fisheye logo"
       /></a>
     </header>
@@ -66,6 +66,7 @@
       <div class="photograpth-gallery__content">
         <button
           class="photograpth-gallery__button photograpth-gallery__button_previous"
+          aria-label="previous"
         >
           <em class="fa-solid fa-chevron-left"></em>
         </button>
@@ -76,11 +77,12 @@
 
         <button
           class="photograpth-gallery__button photograpth-gallery__button_next"
+          aria-label="next"
         >
           <em class="fa-solid fa-chevron-right"></em>
         </button>
 
-        <button class="photograpth-gallery__close">
+        <button class="photograpth-gallery__close" aria-label="close">
           <strong class="fa-solid fa-xmark"></strong>
         </button>
       </div>
