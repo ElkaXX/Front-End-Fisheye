@@ -25,6 +25,20 @@ const displayPhotographer = (photographer) => {
   img.alt = portraitImg.alt;
 };
 
+const displaySummary = (mediaList, photographer = null) => {
+  if (photographer) {
+    const price = document.querySelector(".photograpth-summary__price");
+    price.textContent = `${photographer.price}€ / jour`;
+  }
+
+  const likeCount = document.querySelector(".photograpth-summary__count");
+
+  likeCount.textContent = mediaList.reduce(
+    (partialSum, element) => partialSum + element.likes,
+    0
+  );
+};
+
 // Fonction pour afficher une liste d'éléments multimédias en fonction du filtre sélectionné
 const displayMediaByFilter = (mediaList, filterValue) => {
   const list = document.querySelector(".photograph-photos");
@@ -62,6 +76,7 @@ const displayMediaByFilter = (mediaList, filterValue) => {
 
       likeImg.classList.toggle("photograph-photos__like-media_liked");
       count.textContent = media.likes;
+      displaySummary(mediaList);
     });
 
     list.appendChild(listItem);
@@ -106,6 +121,7 @@ const init = async () => {
 
   displayPhotographer(photographer);
   displayMediaList(mediaList);
+  displaySummary(mediaList, photographer);
 };
 
 init();

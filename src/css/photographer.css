@@ -11,6 +11,10 @@
   cursor: pointer;
 }
 
+.general-button:hover, .general-button:focus {
+  background-color: #DB8876;
+}
+
 .photograph-header {
   background-color: #fafafa;
   height: 300px;
@@ -279,4 +283,29 @@ form textarea {
   border-radius: 5px;
   padding: 10px;
   cursor: pointer;
+}
+
+.photograpth-summary {
+  min-width: 376px;
+  position: fixed;
+  bottom: 0;
+  right: 100px;
+  background-color: #DB8876;
+  padding: 20px 30px 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.photograpth-summary__img {
+  width: 21px;
+  height: 24px;
+}
+
+.photograpth-summary__likes {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }

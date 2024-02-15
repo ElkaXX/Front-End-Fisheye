@@ -444,6 +444,17 @@ var displayPhotographer = function displayPhotographer(photographer) {
   img.src = portraitImg.src;
   img.alt = portraitImg.alt;
 };
+var displaySummary = function displaySummary(mediaList) {
+  var photographer = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+  if (photographer) {
+    var price = document.querySelector(".photograpth-summary__price");
+    price.textContent = "".concat(photographer.price, "\u20AC / jour");
+  }
+  var likeCount = document.querySelector(".photograpth-summary__count");
+  likeCount.textContent = mediaList.reduce(function (partialSum, element) {
+    return partialSum + element.likes;
+  }, 0);
+};
 
 // Fonction pour afficher une liste d'éléments multimédias en fonction du filtre sélectionné
 var displayMediaByFilter = function displayMediaByFilter(mediaList, filterValue) {
@@ -484,6 +495,7 @@ var displayMediaByFilter = function displayMediaByFilter(mediaList, filterValue)
       }
       likeImg.classList.toggle("photograph-photos__like-media_liked");
       count.textContent = media.likes;
+      displaySummary(mediaList);
     });
     list.appendChild(listItem);
   });
@@ -529,7 +541,8 @@ var init = /*#__PURE__*/function () {
           mediaList = _context.sent;
           displayPhotographer(photographer);
           displayMediaList(mediaList);
-        case 9:
+          displaySummary(mediaList, photographer);
+        case 10:
         case "end":
           return _context.stop();
       }
