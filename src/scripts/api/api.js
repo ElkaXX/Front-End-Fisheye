@@ -33,7 +33,6 @@ export default class Api {
     const response = await fetch("data/photographers.json");
     const data = await response.json();
     // eslint-disable-next-line no-console
-    console.log(data);
     return data;
   }
 }
