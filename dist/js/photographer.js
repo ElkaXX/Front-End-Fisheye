@@ -126,10 +126,8 @@ function _readData3() {
           return response.json();
         case 5:
           data = _context4.sent;
-          // eslint-disable-next-line no-console
-          console.log(data);
           return _context4.abrupt("return", data);
-        case 8:
+        case 7:
         case "end":
           return _context4.stop();
       }
